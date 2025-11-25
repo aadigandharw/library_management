@@ -1,0 +1,68 @@
+<div style="
+    padding: 18px;
+    margin-bottom: 25px;
+    border-radius: 14px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+"
+onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 18px rgba(0,0,0,0.12)'"
+onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 14px rgba(0,0,0,0.08)'"
+>
+
+    {% if doc.image %}
+    <div style="overflow: hidden; border-radius: 12px;">
+        <img src="{{ frappe.utils.get_url(doc.image) }}"
+            alt="{{ doc.name }}"
+            style="
+                width: 100%;
+                height: 240px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'"
+        >
+    </div>
+    {% endif %}
+
+    <h3 style="
+        margin-top: 18px;
+        margin-bottom: 6px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #1e1e1e;
+    ">
+        <a href="{{ doc.route }}" style="text-decoration:none; color:#1e1e1e;">
+            {{ doc.name }}
+        </a>
+    </h3>
+
+    <p style="color: #555; margin-top: 4px; font-size: 15px;">
+        By <span style="font-weight: 600;">{{ doc.author }}</span>
+    </p>
+
+    <a href="{{ doc.route }}"
+       style="
+           display: inline-block;
+           margin-top: 14px;
+           padding: 9px 18px;
+           background: #5568f9;
+           color: white;
+           border-radius: 8px;
+           text-decoration: none;
+           font-size: 15px;
+           font-weight: 600;
+           box-shadow: 0 3px 10px rgba(85,104,249,0.3);
+           transition: background 0.2s ease, transform 0.2s ease;
+       "
+       onmouseover="this.style.background='#4455e4'; this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.background='#5568f9'; this.style.transform='translateY(0)'"
+    >
+        Read More →
+    </a>
+
+</div>

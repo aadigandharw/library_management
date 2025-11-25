@@ -1,0 +1,28 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+
+{% if image %}
+<img src="{{ frappe.utils.get_url(image) }}" 
+     alt="{{ title }}" 
+     style="max-width:100%; border-radius:10px; margin-bottom:20px;">
+{% endif %}
+
+<h1>{{ title }}</h1>
+
+<p><strong>By {{ author }}</strong></p>
+
+{% if status == 'Available' %}
+  <p style="color:green; font-weight:bold;">Available</p>
+{% elif status == 'Issued' %}
+  <p style="color:red; font-weight:bold;">Issued</p>
+{% endif %}
+
+<p>Publisher: <strong>{{ publisher }}</strong></p>
+<p>ISBN: <strong>{{ isbn }}</strong></p>
+
+<div style="margin-top:20px;">
+  {{ description }}
+</div>
+
+{% endblock %}
