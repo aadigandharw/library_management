@@ -2,27 +2,91 @@
 
 {% block page_content %}
 
-{% if image %}
-<img src="{{ frappe.utils.get_url(image) }}" 
-     alt="{{ title }}" 
-     style="max-width:100%; border-radius:10px; margin-bottom:20px;">
-{% endif %}
+<style>
+    .book-container {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        max-width: 900px;
+        margin: auto;
+        animation: fadeIn 0.6s ease-in-out;
+    }
 
-<h1>{{ title }}</h1>
+    .book-image {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
-<p><strong>By {{ author }}</strong></p>
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #0a0f2c;
+    }
 
-{% if status == 'Available' %}
-  <p style="color:green; font-weight:bold;">Available</p>
-{% elif status == 'Issued' %}
-  <p style="color:red; font-weight:bold;">Issued</p>
-{% endif %}
+    .author {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: #888;
+    }
 
-<p>Publisher: <strong>{{ publisher }}</strong></p>
-<p>ISBN: <strong>{{ isbn }}</strong></p>
+    .status {
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
 
-<div style="margin-top:20px;">
-  {{ description }}
+    .available {
+        color: green;
+    }
+
+    .issued {
+        color: red;
+    }
+
+    .meta {
+        background: #f9f9ff;
+        padding: 12px 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border-left: 4px solid #0a0f2c;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="book-container">
+
+    {% if image %}
+        <img src="{{ frappe.utils.get_url(image) }}" 
+             alt="{{ title }}" 
+             class="book-image">
+    {% endif %}
+
+    <h1>{{ title }}</h1>
+
+    <p class="author">By {{ author }}</p>
+
+    {% if status == 'Available' %}
+      <p class="status available">✔ Available</p>
+    {% elif status == 'Issued' %}
+      <p class="status issued">✖ Issued</p>
+    {% endif %}
+
+    <div class="meta">
+        <p><strong>Publisher:</strong> {{ publisher }}</p>
+        <p><strong>ISBN:</strong> {{ isbn }}</p>
+    </div>
+
+    <div style="margin-top:20px; line-height:1.7; font-size:1.1rem;">
+      {{ description }}
+    </div>
+
 </div>
 
 {% endblock %}
